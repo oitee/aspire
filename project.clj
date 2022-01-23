@@ -6,7 +6,9 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring/ring-core "1.9.5"]
                  [ring/ring-jetty-adapter "1.9.5"]
-                 [compojure "1.6.2"]]
+                 [compojure "1.6.2"]
+                 [org.clojure/data.json "2.4.0"]
+                 [de.ubercode.clostache/clostache "1.4.0"]]
   :main ^:skip-aot aspire.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

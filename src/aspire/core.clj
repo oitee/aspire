@@ -7,5 +7,5 @@
 (defn -main
   [& args]
   (jetty/run-jetty routes/app
-                   {:port 3000
+                   {:port (Integer/parseInt (System/getenv "PORT"))
                     :join? true}))

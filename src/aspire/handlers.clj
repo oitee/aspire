@@ -1,11 +1,12 @@
 (ns aspire.handlers
   (:require [clostache.parser :as mustache]
             [aspire.db :as db]
-            [ring.util.response :as ring-response]))
+            [ring.util.response :as ring-response]
+            [clojure.data.json :as json]))
 
 (defn home
   [request]
-  "Home Page")
+  (ring-response/redirect (str "/problem/" (db/random-id))))
 
 (defn problem-by-id
   [request]
@@ -17,21 +18,22 @@
                                 {:title (:problemTitle data)
                                  :description (:problemDescription data)}))))
 
-(db/get "find-peak-element")
-
 (defn next-problem
   [request]
-  (str "Next"))
+  (ring-response/redirect (str "/problem/" (db/random-id))))
 
 (defn hint
   [request]
-  (let [id (:id (:params request))]
-    (str "Hint for " id)))
+  (let [id (:id (:params request))
+        data (db/get id)]
+    (json/write-str {"hint" (:hint data)})))
 
 (defn solution
   [request]
-  (let [id (:id (:params request))]
-    (str "Solution for " id)))
+  (let [id (:id (:params request))
+        data (db/get id)]
+    (json/write-str {"hint" (:hint data)
+                     "solution" (:solution data)})))
 
 (defn not-found
   [request]

@@ -24,7 +24,7 @@
   (data-map id))
 
 
-(defn random-data
+(defn random-id
   []
   (:id (rand-nth data)))
 

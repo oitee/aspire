@@ -1,8 +1,9 @@
 (ns aspire.db
-  (:require [clojure.data.json :as json]))
+  (:require [clojure.data.json :as json]
+            [clojure.java.io :as io]))
 
 (def data
-  (json/read-str (slurp "resources/data.txt")
+  (json/read-str (slurp (io/resource "data.txt"))
                  :key-fn keyword))
 
 (def data-map
@@ -13,11 +14,6 @@
        (assoc accumulator id element)))
    {}
    data))
-
-(defn data-size
-  []
-  (count data-map))
-
 
 (defn get
   [id]

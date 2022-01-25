@@ -42,7 +42,7 @@
                 <div>
                     <h1><span class="text-warning"> RemindMe </span> Flash Cards</h1>
                     <p class="lead my-4">
-                        Use the power of spaced repitition to memorize anything!
+                        Use the power of spaced repetition to memorize anything!
                     </p>
                     <br>
                 </div>
@@ -54,7 +54,7 @@
         <div class="container p-1" id="description">
             <h1>{{title}}</h1>
             <br>
-            <p> {{description}}</p>
+            <p> {{{description}}}</p>
         </div>
     </section>
 
@@ -100,7 +100,7 @@
         let res = await fetch(`/hint/${id}`).then(res => res.json());
 
         document.getElementById("hint").innerHTML = `
-        <h3>Hint:</h3>
+        <h3>Hint</h3>
         <p>
         ${res.hint}
         <br>
@@ -145,7 +145,7 @@
         <br>
         `;
         document.getElementById("hint").innerHTML = `
-        <h3>Hint:</h3>
+        <h3>Hint</h3>
         <p>
         ${res.hint}
         `

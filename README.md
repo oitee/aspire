@@ -1,44 +1,31 @@
-# aspire
+# RemindMe
 
-FIXME: description
+A simple app that replicates real-world flash cards.
 
-## Installation
+## Project Scope
 
-Download from http://example.com/FIXME.
+This app aims to replicate how flash cards work in the real world. Quoting from [Wikipedia](https://en.wikipedia.org/wiki/Flashcard):
 
-## Usage
+> A flashcard or flash card (also known as an index card) is a card bearing information on both sides, which is intended to be used as an aid in memorization. Each flashcard bears a question on one side and an answer on the other
 
-FIXME: explanation
+Similar to real world flash cards, RemindMe displays a question, which is selected randomly from a set of questions. The user has the option to see a hint or go to the next question (which will again be randomly selected from the question pool).  If the user chooses to the see the hint, the hint to that question will be displayed and the user will again have the choice to either proceed to the next question or see the solution. Lastly, if the user chooses to see the solution, the relevant solution is displayed along with the option to proceed to the next question.
 
-    $ java -jar aspire-0.1.0-standalone.jar [args]
+I wanted to build **RemindMe**, as a **tool to recall my solutions to LeetCode problems**. For this reason, the app describes each question as a ‘problem’. Also, while the text of each problem is lifted from LeetCode, the hints and solutions are mine. (Always happy to update my solutions with more optimal ones. Pull requests are welcome!)  
 
-## Options
+The app reads a JSON file (`data.txt`) to access the set of problems, solutions and hints. When we want to add a new problem, we will need to update the JSON file.
 
-FIXME: listing of options this app accepts.
+## Supported Routes
 
-## Examples
+Here are the routes supported by this app:
 
-...
+- `/problem/:id`: This route loads the problem corresponding to the `id` path parameter.
+- `/next`: This route redirects to a randomly selected `/problem/:id` route
+- `/`: Same as `/next`, it redirects to a new problem route
+- `/hint/:id`: Generates a JSON payload containing the hint for the respective problem (to be used by client-side JavaScript).
+- `:/solution/:id`: Generates a JSON payload containing the hint and solution for the respective problem (to be used by client-side JavaScript).
 
-### Bugs
+The primary goal behind building this application was to learn how to build and deploy a project using Clojure. 
 
-...
+## Deployment
 
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2022 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+The application is deployed here: [remind.otee.dev](https://remind.otee.dev)
